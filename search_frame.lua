@@ -657,7 +657,7 @@ function public.on_load()
         btn:SetPoint('TOPLEFT', private.modifier_buttons['buyout-profit'], 'BOTTOMLEFT', 0, -10)
         private.modifier_buttons['buyout-pct'] = btn
     end
-    for modifier_name, btn in private.modifier_buttons do
+    for modifier_name, btn in pairs(private.modifier_buttons) do
         local modifier_name = modifier_name
         local btn = btn
 
@@ -670,7 +670,7 @@ function public.on_load()
             local args = Aux.util.map(btn.inputs, function(input) return input:GetText() end)
             if filter.test(unpack(args)) then
                 add_modifier(modifier_name, unpack(args))
-                for _, input in btn.inputs do
+                for _, input in ipairs(btn.inputs) do
                     input:SetText('')
                     input:ClearFocus()
                 end

@@ -772,7 +772,7 @@ local methods = {
                     record_b = b.record
                 end
 
-                for _, sort in self.sorts do
+                for _, sort in ipairs(self.sorts) do
                     local ordering = self.config[sort.index].cmp and self.config[sort.index].cmp(record_a, record_b, sort.descending) or Aux.sort.EQ
 
                     if ordering == Aux.sort.LT then
@@ -935,7 +935,7 @@ local methods = {
 
     SetSort = function(self, ...)
         for k=1,arg.n do
-            for i, sort in self.sorts do
+            for i, sort in ipairs(self.sorts) do
                 if sort.index == abs(arg[k]) then
                     tremove(self.sorts, i)
                     break

@@ -18,7 +18,7 @@ function private.current_query()
 end
 
 function private.current_thread()
-    for _, thread in threads do
+    for _, thread in pairs(threads) do
         if thread.id == Aux.control.thread_id then
             return thread
         end

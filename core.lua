@@ -4,6 +4,17 @@ Aux = {
 	orig = {},
 }
 
+-- TBC compatibility
+_G = _G or function()
+    local fake_global_table = {}
+    setmetatable(fake_global_table, {
+        __index = function(key)
+            return getglobal(key)
+        end
+    })
+    return
+end
+
 function Aux.on_load()
 	Aux.log('Aux v'..Aux.version..' loaded.')
     tinsert(UISpecialFrames, 'AuxFrame')

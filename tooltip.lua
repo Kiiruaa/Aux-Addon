@@ -6,7 +6,7 @@ local hooked_setter
 local game_tooltip_money
 
 function public.on_load()
-    for func, hook in game_tooltip_hooks do
+    for func, hook in pairs(game_tooltip_hooks) do
         local func, hook = func, hook
         Aux.hook(
             func,
@@ -73,7 +73,7 @@ function private.extend_tooltip(tooltip, hyperlink, quantity)
 
                 tooltip:AddLine('Disenchants into:', color.r, color.g, color.b)
                 sort(distribution, function(a,b) return a.probability > b.probability end)
-                for _, event in distribution do
+                for _, event in ipairs(distribution) do
                     tooltip:AddLine(format('  %s%% %s (%s-%s)', event.probability * 100, Aux.info.display_name(event.item_id, true) or 'item:'..event.item_id, event.min_quantity, event.max_quantity), color.r, color.g, color.b)
                 end
             end

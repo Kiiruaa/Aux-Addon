@@ -13,7 +13,7 @@ function public.table_eq(t1, t2)
 		return false
 	end
 
-	for key, value in t1 do
+	for key, value in pairs(t1) do
 		if t2[key] ~= value then
 			return false
 		end

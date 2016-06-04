@@ -149,7 +149,7 @@ local methods = {
 
     SetSelection = function(st, predicate)
         st:ClearSelection()
-        for i, rowDatum in st.rowData do
+        for i, rowDatum in ipairs(st.rowData) do
             if predicate(rowDatum) then
                     st.selected = i
                     st:RefreshRows()

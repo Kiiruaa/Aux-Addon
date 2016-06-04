@@ -68,7 +68,7 @@ local UNCOMMON, RARE, EPIC = 2, 3, 4
 
 function public.value(slot, quality, level)
     local expectation
-    for _, event in public.distribution(slot, quality, level) do
+    for _, event in ipairs(public.distribution(slot, quality, level)) do
         local value = Aux.history.value(event.item_id..':'..0)
         if not value then
             return

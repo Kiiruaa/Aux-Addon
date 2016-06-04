@@ -72,12 +72,12 @@ function public.value(item_key)
 		if getn(item_record.data_points) > 0 then
 			local weighted_values = {}
 			local total_weight = 0
-			for _, data_point in item_record.data_points do
+			for _, data_point in ipairs(item_record.data_points) do
 				local weight = 0.99^Aux.round((item_record.data_points[1].time - data_point.time) / (60*60*24))
 				total_weight = total_weight + weight
 				tinsert(weighted_values, {value = data_point.market_value, weight = weight})
 			end
-			for _, weighted_value in weighted_values do
+			for _, weighted_value in ipairs(weighted_values) do
 				weighted_value.weight = weighted_value.weight / total_weight
 			end
 
@@ -103,13 +103,13 @@ end
 
 function private.weighted_median(list)
 	local sorted_list = {}
-	for _, e in list do
+	for _, e in ipairs(list) do
 		tinsert(sorted_list, e)
 	end
 	sort(sorted_list, function(a,b) return a.value < b.value end)
 
 	local weight = 0
-	for _, element in sorted_list do
+	for _, element in ipairs(sorted_list) do
 		weight = weight + element.weight
 		if weight >= 0.5 then
 			return element.value
