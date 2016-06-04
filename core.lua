@@ -5,14 +5,8 @@ Aux = {
 }
 
 -- TBC compatibility
-_G = _G or function()
-    local fake_global_table = {}
-    setmetatable(fake_global_table, {
-        __index = function(key)
-            return getglobal(key)
-        end
-    })
-    return
+getglobal = getglobal or function(key)
+    return _G[key]
 end
 
 function Aux.on_load()
